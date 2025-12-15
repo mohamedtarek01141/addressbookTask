@@ -12,12 +12,10 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  padding: 40px;
+  padding: 30px;
   width: 100%;
   max-width: 450px;
   animation: slideIn 0.3s ease-out;
-  max-height: 90vh;
-  overflow-y: auto;
 }
 
 @keyframes slideIn {
@@ -33,41 +31,41 @@
 
 .register-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .register-header h1 {
   color: #333;
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 4px;
   font-weight: 600;
 }
 
 .register-header p {
   color: #666;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .form-group label {
   font-weight: 500;
   color: #333;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .form-control {
-  padding: 12px 16px;
+  padding: 10px 14px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 14px;
@@ -86,19 +84,20 @@
 
 .error-message {
   color: #e74c3c;
-  font-size: 12px;
-  margin-top: 4px;
+  font-size: 11px;
+  margin-top: 2px;
+  min-height: 14px;
 }
 
 .btn {
-  padding: 12px 24px;
+  padding: 10px 24px;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .btn-primary {
@@ -119,13 +118,13 @@
 .login-link,
 .register-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .login-link p,
 .register-link p {
   color: #666;
-  font-size: 14px;
+  font-size: 13px;
   margin: 0;
 }
 
@@ -143,7 +142,19 @@
 
 @media (max-width: 480px) {
   .register-card {
-    padding: 30px 20px;
+    padding: 25px 20px;
+  }
+  
+  .register-header {
+    margin-bottom: 15px;
+  }
+  
+  .register-header h1 {
+    font-size: 22px;
+  }
+  
+  .register-form {
+    gap: 10px;
   }
 }
 
