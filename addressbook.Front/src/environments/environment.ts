@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7109/api'
+  apiUrl: 'http://addressbook2131.runasp.net/api'
 };
 
