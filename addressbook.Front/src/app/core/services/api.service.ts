@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl || 'https://localhost:7109/api';
+  private apiUrl = environment.apiUrl || 'http://addressbook2131.runasp.net/api';
 
   constructor(private http: HttpClient) {}
 
