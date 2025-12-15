@@ -70,7 +70,22 @@ export class AddressBookListComponent implements OnInit {
   onSearch(): void {
     this.isSearchMode = true;
     this.isLoading = true;
-    this.addressBookService.search(this.searchFilter).subscribe({
+    
+    // Prepare search filter with properly formatted dates
+    const searchData: SearchFilter = {
+      searchTerm: this.searchFilter.searchTerm || undefined,
+      startDate: this.searchFilter.startDate ? this.formatDate(this.searchFilter.startDate) : undefined,
+      endDate: this.searchFilter.endDate ? this.formatDate(this.searchFilter.endDate) : undefined
+    };
+    
+    // Remove undefined values
+    Object.keys(searchData).forEach(key => {
+      if (searchData[key as keyof SearchFilter] === undefined) {
+        delete searchData[key as keyof SearchFilter];
+      }
+    });
+    
+    this.addressBookService.search(searchData).subscribe({
       next: (data) => {
         this.filteredAddressBooks = data;
         this.isLoading = false;
@@ -80,6 +95,17 @@ export class AddressBookListComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  private formatDate(date: Date | string): string {
+    if (typeof date === 'string') {
+      return date; // Already in YYYY-MM-DD format from HTML input
+    }
+    // Convert Date to YYYY-MM-DD format
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   onClearSearch(): void {

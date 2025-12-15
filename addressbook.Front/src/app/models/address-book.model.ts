@@ -36,13 +36,8 @@ export interface LoginRequest {
 }
 
 export interface SearchFilter {
-  fullName?: string;
-  jobId?: number;
-  departmentId?: number;
-  mobileNumber?: string;
-  email?: string;
-  address?: string;
-  dateOfBirthFrom?: Date | string;
-  dateOfBirthTo?: Date | string;
+  searchTerm?: string;
+  startDate?: Date | string;
+  endDate?: Date | string;
 }
 
