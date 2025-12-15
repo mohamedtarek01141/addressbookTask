@@ -1,0 +1,54 @@
+<div class="jobs-container">
+  <div class="header">
+    <h1>Manage Jobs</h1>
+    <button class="btn btn-primary" (click)="onAdd()">Add New Job</button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+
+  <div class="table-container" *ngIf="!isLoading">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Job Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.id }}</td>
+          <td>{{ job.jobTitle }}</td>
+          <td>
+            <button class="btn btn-sm btn-edit" (click)="onEdit(job)">Edit</button>
+            <button class="btn btn-sm btn-delete" (click)="onDelete(job.id!)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="jobs.length === 0">
+          <td colspan="3" class="no-data">No jobs found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" *ngIf="showEditModal" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ selectedJob?.id ? 'Edit Job' : 'Add New Job' }}</h2>
+        <button class="close-btn" (click)="onClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Job Title *</label>
+          <input type="text" [(ngModel)]="jobTitle" placeholder="Enter job title" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="onClose()">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="onSave()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
