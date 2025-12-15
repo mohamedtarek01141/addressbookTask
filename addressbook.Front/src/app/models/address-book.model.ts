@@ -26,13 +26,27 @@ export interface Department {
 export interface User {
   id?: number;
   username: string;
+  email: string;
   password?: string;
   token?: string;
 }
 
 export interface LoginRequest {
-  username: string;
+  userNameOrEmail: string;
   password: string;
+}
+
+export interface RegisterRequest {
+  userName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  userName: string;
+  email: string;
 }
 
 export interface SearchFilter {

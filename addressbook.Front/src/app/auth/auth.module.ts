@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthWrapperComponent } from './auth-wrapper.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: AuthWrapperComponent
   }
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthWrapperComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

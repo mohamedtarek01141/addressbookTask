@@ -22,7 +22,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      userNameOrEmail: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
@@ -37,7 +37,7 @@ export class LoginComponent {
           this.router.navigate(['/addressbook']);
         },
         error: (error) => {
-          this.errorMessage = 'Invalid username or password';
+          this.errorMessage = error.error?.message || 'Invalid username/email or password';
           this.isLoading = false;
         }
       });

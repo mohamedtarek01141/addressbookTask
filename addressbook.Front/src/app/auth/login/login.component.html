@@ -7,17 +7,17 @@
     
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="userNameOrEmail">Username or Email</label>
         <input
           type="text"
-          id="username"
-          formControlName="username"
+          id="userNameOrEmail"
+          formControlName="userNameOrEmail"
           class="form-control"
-          [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
-          placeholder="Enter your username"
+          [class.error]="loginForm.get('userNameOrEmail')?.invalid && loginForm.get('userNameOrEmail')?.touched"
+          placeholder="Enter your username or email"
         />
-        <div class="error-message" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-          Username is required
+        <div class="error-message" *ngIf="loginForm.get('userNameOrEmail')?.invalid && loginForm.get('userNameOrEmail')?.touched">
+          Username or email is required
         </div>
       </div>
 
@@ -48,6 +48,10 @@
         <span *ngIf="!isLoading">Login</span>
         <span *ngIf="isLoading">Logging in...</span>
       </button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+      </div>
     </form>
   </div>
 </div>

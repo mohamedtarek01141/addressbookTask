@@ -18,6 +18,7 @@ namespace addressbook.Application.DependencyInjection
             services.AddScoped<IAddressBookService, AddressBookService>();
             services.AddScoped<IJobService, JobService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IAuthService, AuthService>();
             return services;
         }
     }

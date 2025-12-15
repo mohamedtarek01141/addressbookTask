@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
-import { LoginRequest, User } from '../../models/address-book.model';
+import { LoginRequest, RegisterRequest, AuthResponse, User } from '../../models/address-book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,30 +20,30 @@ export class AuthService {
     this.loadUserFromStorage();
   }
 
-  login(credentials: LoginRequest): Observable<any> {
-    return new Observable(observer => {
-      // Mock login - replace with actual API call
-      // For now, accept any username/password
-      const mockUser: User = {
-        id: 1,
-        username: credentials.username,
-        token: 'mock_token_' + Date.now()
-      };
+  login(credentials: LoginRequest): Observable<AuthResponse> {
+    return this.apiService.post<AuthResponse>('auth/login', credentials).pipe(
+      tap((response: AuthResponse) => {
+        const user: User = {
+          username: response.userName,
+          email: response.email,
+          token: response.token
+        };
+        this.setUser(user);
+      })
+    );
+  }
 
-      this.setUser(mockUser);
-      observer.next(mockUser);
-      observer.complete();
-
-      // Uncomment for real API:
-      // this.apiService.post<User>('auth/login', credentials).subscribe({
-      //   next: (user) => {
-      //     this.setUser(user);
-      //     observer.next(user);
-      //     observer.complete();
-      //   },
-      //   error: (err) => observer.error(err)
-      // });
-    });
+  register(registerData: RegisterRequest): Observable<AuthResponse> {
+    return this.apiService.post<AuthResponse>('auth/register', registerData).pipe(
+      tap((response: AuthResponse) => {
+        const user: User = {
+          username: response.userName,
+          email: response.email,
+          token: response.token
+        };
+        this.setUser(user);
+      })
+    );
   }
 
   logout(): void {
@@ -87,4 +87,3 @@ export class AuthService {
     }
   }
 }
-
